@@ -12,3 +12,6 @@
 .blogs h3 {
   font-size: 28px;
 }
+.blogItem {
+  max-width: 50vw;
+}
