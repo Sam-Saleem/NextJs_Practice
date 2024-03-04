@@ -1,0 +1,15 @@
+.blogpost {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0px 110px;
+}
+
+.blogs h2 {
+  font-size: 38px;
+}
+.blogs h3 {
+  font-size: 28px;
+}

@@ -1,10 +1,9 @@
 .title {
   text-align: center;
-  margin-bottom: 20px;
-}
-.title h1 {
   font-size: 50px;
+  margin: 10px;
 }
+
 .center {
   text-align: center;
 }
@@ -16,16 +15,27 @@
   justify-content: center;
   align-items: center;
   justify-content: flex-start;
-  padding-top: 3rem;
 }
 .mainnav ul {
   display: flex;
   justify-content: center;
-  margin-top: 50px;
+  margin: 30px;
+  /* margin-bottom: 30px; */
 }
 
 .mainnav ul li {
   margin: 0 24px;
   list-style: none;
   font-weight: bold;
+}
+.myImg {
+  border-radius: 10px;
+  margin-top: 15px;
+}
+
+.blogs h2 {
+  font-size: 38px;
+}
+.blogs h3 {
+  font-size: 28px;
 }
