@@ -1,7 +1,7 @@
 .title {
   text-align: center;
-  font-size: 50px;
-  margin: 10px;
+  font-size: 45px;
+  margin: 0px;
 }
 
 .center {
@@ -9,12 +9,16 @@
 }
 .main {
   min-height: 100vh;
+  margin: auto;
+  max-width: 60vw;
+  padding: 20px;
+}
+.intro {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  justify-content: flex-start;
 }
 .mainnav ul {
   display: flex;
@@ -29,13 +33,32 @@
   font-weight: bold;
 }
 .myImg {
-  border-radius: 10px;
-  margin-top: 15px;
+  border-radius: 110px;
+  margin-top: 20px;
+  text-align: center;
 }
-
+.blogs {
+}
 .blogs h2 {
-  font-size: 38px;
+  font-size: 40px;
 }
 .blogs h3 {
-  font-size: 28px;
+  font-size: 24px;
+  margin-bottom: 0px;
+}
+.blogs p {
+  margin-top: 5px;
+}
+.blogs button {
+  color: white;
+  background-color: black;
+  padding: 7px 10px;
+  cursor: pointer;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  /* margin-left: 360px; */
+}
+.description {
+  font: 16px;
+  max-width: 36vw;
 }

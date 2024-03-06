@@ -1,0 +1,8 @@
+.about {
+  max-width: 55vw;
+  margin: auto;
+}
+.about h1 {
+  text-align: center;
+  margin: 35px;
+}

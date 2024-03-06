@@ -4,14 +4,26 @@
   justify-content: center;
   align-items: center;
   justify-content: flex-start;
+  margin-bottom: 20px;
+  min-height: 100vh;
 }
 
 .blogs h2 {
   font-size: 38px;
+  text-align: center;
 }
 .blogs h3 {
   font-size: 28px;
 }
 .blogItem {
   max-width: 50vw;
+}
+.blogItem button {
+  color: white;
+  background-color: black;
+  padding: 7px 10px;
+  cursor: pointer;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  margin-left: 310px;
 }
