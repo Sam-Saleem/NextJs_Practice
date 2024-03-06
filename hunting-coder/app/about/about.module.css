@@ -1,8 +1,47 @@
 .about {
-  max-width: 55vw;
+  max-width: 65vw;
   margin: auto;
 }
 .about h1 {
   text-align: center;
   margin: 35px;
+}
+.about h2 {
+  margin-bottom: 5px;
+}
+.about p {
+  margin-top: 10px;
+}
+@media only screen and (max-width: 780px) {
+  .about {
+    max-width: 85vw;
+  }
+  .about h1 {
+    font-size: 30px;
+  }
+  .about h2 {
+    font-size: 25px;
+    margin-bottom: 10px;
+  }
+  .about p {
+    margin-top: 5px;
+  }
+}
+@media only screen and (max-width: 580px) {
+  .about {
+    max-width: 87vw;
+  }
+  .about h1 {
+    font-size: 24px;
+    margin: 30px;
+  }
+  .about h2 {
+    font-size: 19px;
+    margin-bottom: 5px;
+    margin-top: 20px;
+  }
+  .about p {
+    font-size: 14px;
+    margin-top: 5px;
+  }
 }

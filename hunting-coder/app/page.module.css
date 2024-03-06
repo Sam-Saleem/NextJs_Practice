@@ -10,8 +10,8 @@
 .main {
   min-height: 100vh;
   margin: auto;
-  max-width: 60vw;
-  padding: 20px;
+  max-width: 70vw;
+  padding: 10px;
 }
 .intro {
   flex: 1;
@@ -20,25 +20,13 @@
   justify-content: center;
   align-items: center;
 }
-.mainnav ul {
-  display: flex;
-  justify-content: center;
-  margin: 30px;
-  /* margin-bottom: 30px; */
-}
 
-.mainnav ul li {
-  margin: 0 24px;
-  list-style: none;
-  font-weight: bold;
-}
 .myImg {
   border-radius: 110px;
   margin-top: 20px;
   text-align: center;
 }
-.blogs {
-}
+
 .blogs h2 {
   font-size: 40px;
 }
@@ -60,5 +48,99 @@
 }
 .description {
   font: 16px;
-  max-width: 36vw;
+  max-width: 40vw;
+}
+.mainnav ul {
+  display: flex;
+  justify-content: center;
+  margin: 30px;
+  /* margin-bottom: 30px; */
+}
+
+.mainnav ul li {
+  margin: 0 24px;
+  list-style: none;
+  font-weight: bold;
+}
+@media only screen and (max-width: 780px) {
+  .title {
+    /* text-align: center; */
+    font-size: 35px;
+    /* margin: 0px; */
+  }
+  .myImg {
+    border-radius: 70px;
+    /* margin-top: 20px; */
+    /* text-align: center; */
+    width: 400px;
+    height: 300px;
+  }
+  .main {
+    /* min-height: 100vh;
+  margin: auto; */
+    max-width: 80vw;
+    padding: 10px;
+  }
+
+  .blogs h2 {
+    font-size: 30px;
+  }
+  .blogs h3 {
+    font-size: 20px;
+  }
+
+  .description {
+    max-width: 50vw;
+    font-size: 14px;
+  }
+  .blogs button {
+    padding: 5px 7px;
+
+    font-size: 13px;
+  }
+}
+@media only screen and (max-width: 580px) {
+  .mainnav ul {
+    display: flex;
+    justify-content: center;
+    margin: 20px 10px;
+    padding: 0px;
+    font-size: 14px;
+  }
+
+  .mainnav ul li {
+    margin: 0 14px;
+    list-style: none;
+    font-weight: bold;
+  }
+  .title {
+    font-size: 25px;
+  }
+  .myImg {
+    border-radius: 70px;
+    width: 300px;
+    height: 250px;
+  }
+  .main {
+    max-width: 90vw;
+  }
+
+  .blogs h2 {
+    font-size: 20px;
+  }
+  .blogs h3 {
+    font-size: 15px;
+  }
+  .blogs p {
+    font-size: 13px;
+  }
+  .description {
+    max-width: 70vw;
+    font-size: 12px;
+  }
+  .blogs button {
+    padding: 3px 5px;
+    border-radius: 4px;
+    font-size: 11px;
+  }
 }

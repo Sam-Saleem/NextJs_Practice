@@ -1,4 +1,5 @@
 import styles from "../blogpost.module.css";
+import { readdir } from "node:fs/promises";
 const { readFile } = require("node:fs/promises");
 const { resolve } = require("node:path");
 
@@ -35,12 +36,20 @@ export default BlogPost;
 
 // Static Site Generation:
 export async function generateStaticParams() {
-  return [
-    { slug: "how-to-learn-javascript" },
-    { slug: "how-to-learn-nextjs" },
-    { slug: "how-to-learn-react" },
-    { slug: "how-to-learn-typescript" },
-  ];
+  // return [
+  //   { slug: "how-to-learn-javascript" },
+  //   { slug: "how-to-learn-nextjs" },
+  //   { slug: "how-to-learn-react" },
+  //   { slug: "how-to-learn-typescript" },
+  // ];
+
+  const path = resolve("app/data/blogdata");
+  const files = await readdir(path);
+  const blogs = [];
+  for (const file of files) {
+    blogs.push({ slug: `${file.split(".")[0]}` });
+  }
+  return blogs;
 }
 async function getData(slug) {
   // const response = await fetch(

@@ -6,3 +6,19 @@
   justify-content: flex-start;
   padding: 0px 150px;
 }
+@media only screen and (max-width: 800px) {
+  .blogpost {
+    padding: 0px 85px;
+  }
+  .blogpost h1 {
+    font-size: 30px;
+  }
+}
+@media only screen and (max-width: 620px) {
+  .blogpost {
+    padding: 0px 15px 15px 15px;
+  }
+  .blogpost h1 {
+    font-size: 25px;
+  }
+}

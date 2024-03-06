@@ -16,7 +16,7 @@
   font-size: 28px;
 }
 .blogItem {
-  max-width: 50vw;
+  max-width: 60vw;
 }
 .blogItem button {
   color: white;
@@ -26,4 +26,30 @@
   border-radius: 6px;
   margin-bottom: 12px;
   margin-left: 310px;
+}
+@media only screen and (max-width: 800px) {
+  .blogItem {
+    max-width: 80vw;
+  }
+}
+@media only screen and (max-width: 520px) {
+  .blogs h2 {
+    font-size: 30px;
+  }
+  .blogs h3 {
+    font-size: 20px;
+    margin-bottom: 0px;
+  }
+  .blogItem {
+    max-width: 90vw;
+  }
+  .blogItem p {
+    margin-top: 5px;
+    font-size: 15px;
+  }
+  .blogItem button {
+    padding: 5px 7px;
+    border-radius: 3px;
+    margin-left: 100px;
+  }
 }

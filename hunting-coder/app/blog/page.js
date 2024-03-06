@@ -64,7 +64,8 @@ const Blog = () => {
 
 export default Blog;
 
-// Server Side Rendering
+// Server Side Rendering:
+
 // This function can be named anything
 // async function getData() {
 //   const response = await fetch("http://localhost:3000/api/blogs", {
@@ -75,6 +76,7 @@ export default Blog;
 // }
 
 // Static Site Generation:
+
 // async function getData() {
 //   // const response = await fetch("http://localhost:3000/api/blogs");
 //   // // In the app directory, data fetching with fetch() will default to cache: 'force-cache', which will cache the request data until manually invalidated. This is similar to getStaticProps in the pages directory.
@@ -82,11 +84,8 @@ export default Blog;
 //   // return data.blogs;
 
 //   const path = resolve("app/data/blogdata");
-
 //   const files = await readdir(path);
-
 //   const blogs = [];
-
 //   for (const file of files) {
 //     const data = await readFile(`${path}/${file}`, { encoding: "utf8" });
 //     blogs.push(JSON.parse(data));
