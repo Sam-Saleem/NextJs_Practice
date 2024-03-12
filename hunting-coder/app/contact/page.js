@@ -79,7 +79,7 @@ const Contact = () => {
             required
           />
           <div id="email" className={styles.formtext}>
-            We'll never share your email with anyone else.
+            We will never share your email with anyone else.
           </div>
         </div>
         <div className={styles.feild}>
