@@ -1,0 +1,58 @@
+// import { useState, useEffect } from "react";
+import RootLayout from "./RootLayout";
+
+export default function MyPage() {
+  // Define props
+  const [cart, setCart] = useState();
+  const [subTotal, setSubTotal] = useState();
+  //   let cart = localStorage.getItem(cart) ? localStorage.getItem(cart) : {};
+  const clearCart = () => {
+    setCart({});
+    saveCart({});
+  };
+  const addToCart = (itemCode, qty, price, name, size, variant) => {
+    const newCart = cart;
+    if (itemCode in cart) {
+      newCart[itemCode].qty = newCart[itemCode].qty + qty;
+    } else {
+      newCart[itemCode] = { qty, price, name, size, variant };
+    }
+    setCart(newCart);
+    saveCart(newCart);
+  };
+  const removeFromCart = (itemCode, qty, price, name, size, variant) => {
+    const newCart = cart;
+    if (itemCode in cart) {
+      newCart[itemCode].qty = newCart[itemCode].qty - qty;
+    }
+    if ([itemCode]["qty"] <= 0) {
+      delete newCart[itemCode];
+    }
+    setCart(newCart);
+    saveCart(newCart);
+  };
+  const saveCart = (myCart) => {
+    localStorage.setItem("cart", myCart);
+    let subt = 0;
+    const keys = Object.keys(cart);
+    for (let i = 0; i < keys.length; i++) {
+      subt += myCart[keys[i]].price * myCart[keys[i]].qty;
+    }
+    setSubTotal(subt);
+  };
+  useEffect(() => {
+    console.log("Helllllooooooo");
+  }, []);
+
+  return (
+    <RootLayout
+      cart={cart}
+      subTotal={subTotal}
+      clearCart={clearCart}
+      addToCart={addToCart}
+      removeFromCart={removeFromCart}
+    >
+      {/* Page content */}
+    </RootLayout>
+  );
+}

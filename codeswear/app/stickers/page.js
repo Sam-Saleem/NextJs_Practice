@@ -1,8 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-const Tshirts = (props) => {
-  console.log("props: ", props);
+const Stickers = () => {
   return (
     <div>
       <section className="text-gray-600 body-font">
@@ -16,12 +15,12 @@ const Tshirts = (props) => {
                 <img
                   alt="ecommerce"
                   className="m-auto h-[30vh] md:h-[36vh] block"
-                  src="https://m.media-amazon.com/images/I/A1ydZbD9ymL._AC_SX679_.jpg"
+                  src="https://m.media-amazon.com/images/I/91wdw7pERpL._AC_UL640_FMwebp_QL65_.jpg"
                 />
               </Link>
               <div className="mt-4 text-center md:text-left">
                 <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
-                  T-Shirts
+                  Stickers
                 </h3>
                 <h2 className="text-gray-900 title-font text-lg font-medium">
                   Wear the Code
@@ -39,12 +38,12 @@ const Tshirts = (props) => {
                 <img
                   alt="ecommerce"
                   className="m-auto h-[36vh] block"
-                  src="https://m.media-amazon.com/images/I/A1N06gL7e+L._AC_SX679_.jpg"
+                  src="https://m.media-amazon.com/images/I/91wdw7pERpL._AC_UL640_FMwebp_QL65_.jpg"
                 />
               </Link>
               <div className="mt-4 text-center md:text-left">
                 <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
-                  T-Shirts
+                  Stickers
                 </h3>
                 <h2 className="text-gray-900 title-font text-lg font-medium">
                   Wear the Code
@@ -61,12 +60,12 @@ const Tshirts = (props) => {
                 <img
                   alt="ecommerce"
                   className="m-auto h-[36vh] block"
-                  src="https://m.media-amazon.com/images/I/A1GHcqd8keL._AC_SX679_.jpg"
+                  src="https://m.media-amazon.com/images/I/91wdw7pERpL._AC_UL640_FMwebp_QL65_.jpg"
                 />
               </Link>
               <div className="mt-4 text-center md:text-left">
                 <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
-                  T-Shirts
+                  Stickers
                 </h3>
                 <h2 className="text-gray-900 title-font text-lg font-medium">
                   Wear the Code
@@ -83,12 +82,12 @@ const Tshirts = (props) => {
                 <img
                   alt="ecommerce"
                   className="m-auto h-[36vh] block"
-                  src="https://m.media-amazon.com/images/I/A14d9tNcXjL._AC_SX679_.jpg"
+                  src="https://m.media-amazon.com/images/I/91wdw7pERpL._AC_UL640_FMwebp_QL65_.jpg"
                 />
               </Link>
               <div className="mt-4 text-center md:text-left">
                 <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
-                  T-Shirts
+                  Stickers
                 </h3>
                 <h2 className="text-gray-900 title-font text-lg font-medium">
                   Wear the Code
@@ -105,12 +104,12 @@ const Tshirts = (props) => {
                 <img
                   alt="ecommerce"
                   className="m-auto h-[36vh] block"
-                  src="https://m.media-amazon.com/images/I/A1ydZbD9ymL._AC_SX679_.jpg"
+                  src="https://m.media-amazon.com/images/I/91wdw7pERpL._AC_UL640_FMwebp_QL65_.jpg"
                 />
               </Link>
               <div className="mt-4 text-center md:text-left">
                 <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
-                  T-Shirts
+                  Stickers
                 </h3>
                 <h2 className="text-gray-900 title-font text-lg font-medium">
                   TWear the Code
@@ -127,12 +126,12 @@ const Tshirts = (props) => {
                 <img
                   alt="ecommerce"
                   className="m-auto h-[36vh] block"
-                  src="https://m.media-amazon.com/images/I/A1N06gL7e+L._AC_SX679_.jpg"
+                  src="https://m.media-amazon.com/images/I/91wdw7pERpL._AC_UL640_FMwebp_QL65_.jpg"
                 />
               </Link>
               <div className="mt-4 text-center md:text-left">
                 <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
-                  T-Shirts
+                  Stickers
                 </h3>
                 <h2 className="text-gray-900 title-font text-lg font-medium">
                   Wear the Code
@@ -149,12 +148,12 @@ const Tshirts = (props) => {
                 <img
                   alt="ecommerce"
                   className="m-auto h-[36vh] block"
-                  src="https://m.media-amazon.com/images/I/A1GHcqd8keL._AC_SX679_.jpg"
+                  src="https://m.media-amazon.com/images/I/91wdw7pERpL._AC_UL640_FMwebp_QL65_.jpg"
                 />
               </Link>
               <div className="mt-4 text-center md:text-left">
                 <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
-                  T-Shirts
+                  Stickers
                 </h3>
                 <h2 className="text-gray-900 title-font text-lg font-medium">
                   Wear the Code
@@ -171,12 +170,12 @@ const Tshirts = (props) => {
                 <img
                   alt="ecommerce"
                   className="m-auto h-[36vh] block"
-                  src="https://m.media-amazon.com/images/I/A14d9tNcXjL._AC_SX679_.jpg"
+                  src="https://m.media-amazon.com/images/I/91wdw7pERpL._AC_UL640_FMwebp_QL65_.jpg"
                 />
               </Link>
               <div className="mt-4 text-center md:text-left">
                 <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
-                  T-Shirts
+                  Stickers
                 </h3>
                 <h2 className="text-gray-900 title-font text-lg font-medium">
                   Wear the Code
@@ -192,4 +191,4 @@ const Tshirts = (props) => {
   );
 };
 
-export default Tshirts;
+export default Stickers;
