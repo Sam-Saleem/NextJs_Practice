@@ -4,7 +4,7 @@ import Link from "next/link";
 import { FaCartPlus } from "react-icons/fa";
 import { IoCloseCircle, IoBagCheckSharp } from "react-icons/io5";
 import { FaRegSquarePlus, FaRegSquareMinus } from "react-icons/fa6";
-import { MdDeleteForever } from "react-icons/md";
+import { MdDeleteForever, MdAccountCircle } from "react-icons/md";
 
 const Navbar = ({ cart, subTotal, clearCart, addToCart, removeFromCart }) => {
   // useEffect(() => {
@@ -50,8 +50,14 @@ const Navbar = ({ cart, subTotal, clearCart, addToCart, removeFromCart }) => {
           </Link>
         </ul>
       </div>
-      <div className="cart absolute right-0 top-3 mx-5 cursor-pointer">
-        <FaCartPlus className="text-xl md:text-2xl" onClick={toggleCart} />
+      <div className="flex absolute right-0 top-3 mx-5  space-x-1 md:space-x-2">
+        <Link href={"/login"}>
+          <MdAccountCircle className="text-xl md:text-2xl cursor-pointer" />
+        </Link>
+        <FaCartPlus
+          className="text-xl md:text-2xl cursor-pointer"
+          onClick={toggleCart}
+        />
       </div>
       <div
         ref={ref}
@@ -112,62 +118,15 @@ const Navbar = ({ cart, subTotal, clearCart, addToCart, removeFromCart }) => {
               </li>
             );
           })}
-          {/* <li>
-            <div className="item flex my-5">
-              <div className="w-2/3 font-semibold">Tshirt - Wear the code</div>
-              <div className="w-1/3 font-bold flex items-center justify-center">
-                <FaRegSquarePlus className="text-pink-600 me-2 cursor-pointer" />{" "}
-                1
-                <FaRegSquareMinus className="text-pink-600 ms-2 cursor-pointer" />
-              </div>
-            </div>
-          </li>
-          <li>
-            <div className="item flex my-5">
-              <div className="w-2/3 font-semibold">Tshirt - Wear the code</div>
-              <div className="w-1/3 font-bold flex items-center justify-center">
-                <FaRegSquarePlus className="text-pink-600 me-2 cursor-pointer" />{" "}
-                1
-                <FaRegSquareMinus className="text-pink-600 ms-2 cursor-pointer" />
-              </div>
-            </div>
-          </li>
-          <li>
-            <div className="item flex my-5">
-              <div className="w-2/3 font-semibold">Tshirt - Wear the code</div>
-              <div className="w-1/3 font-bold flex items-center justify-center">
-                <FaRegSquarePlus className="text-pink-600 me-2 cursor-pointer" />{" "}
-                1
-                <FaRegSquareMinus className="text-pink-600 ms-2 cursor-pointer" />
-              </div>
-            </div>
-          </li>
-          <li>
-            <div className="item flex my-5">
-              <div className="w-2/3 font-semibold">Tshirt - Wear the code</div>
-              <div className="ms-2 w-1/3 font-bold flex items-center justify-center">
-                <FaRegSquarePlus className="text-pink-600 mx-2 cursor-pointer" />
-                1
-                <FaRegSquareMinus className="text-pink-600 mx-2 cursor-pointer" />
-              </div>
-            </div>
-          </li>
-          <li>
-            <div className="item flex my-5">
-              <div className="w-2/3 font-semibold">Tshirt - Wear the code</div>
-              <div className="w-1/3 font-bold flex items-center justify-center">
-                <FaRegSquarePlus className="text-pink-600 me-2 cursor-pointer" />{" "}
-                1
-                <FaRegSquareMinus className="text-pink-600 ms-2 cursor-pointer" />
-              </div>
-            </div>
-          </li> */}
         </ol>
-        <div className="mt-20 flex">
-          <button className="flex mx-auto text-white bg-pink-500 border-0 py-2 px-1 focus:outline-none hover:bg-pink-600 rounded">
-            <IoBagCheckSharp className="m-1" />
-            Checkout
-          </button>
+        <div className="font-bold text-end mt-10">SubTotal: Rs.{subTotal}</div>
+        <div className="mt-5 flex">
+          <Link href={"/checkout"}>
+            <button className="flex mx-auto text-white bg-pink-500 border-0 py-2 px-1 focus:outline-none hover:bg-pink-600 rounded">
+              <IoBagCheckSharp className="m-1" />
+              Checkout
+            </button>
+          </Link>
           <button
             onClick={clearCart}
             className="flex mx-auto text-white bg-pink-500 border-0 py-2 px-1 focus:outline-none hover:bg-pink-600 rounded"

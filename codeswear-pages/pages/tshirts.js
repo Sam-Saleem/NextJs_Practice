@@ -5,9 +5,9 @@ const Tshirts = () => {
   return (
     <div>
       <section className="text-gray-600 body-font">
-        <div className="container px-4 py-24 mx-auto">
-          <div className="flex flex-wrap -m-4">
-            <div className="lg:w-1/4 md:w-1/2 p-4 w-full shadow-lg my-2">
+        <div className="container py-14 md:py-20 px-6 md:px-10 lg:px-14 max-w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            <div className="lg:w-1/4 p-4 shadow-xl hover:shadow-2xl min-w-full">
               <Link
                 className="block relative rounded overflow-hidden"
                 href={"/product/wear-the-code"}
@@ -29,8 +29,7 @@ const Tshirts = () => {
                 <p className="mt-1">S, M, L, XL</p>
               </div>
             </div>
-
-            <div className="lg:w-1/4 md:w-1/2 p-4 w-full shadow-lg my-2">
+            <div className="lg:w-1/4 p-4 shadow-xl hover:shadow-2xl min-w-full">
               <Link
                 className="block relative rounded overflow-hidden"
                 href={"/product/wear-the-code"}
@@ -52,7 +51,7 @@ const Tshirts = () => {
                 <p className="mt-1">S, M, L, XL</p>
               </div>
             </div>
-            <div className="lg:w-1/4 md:w-1/2 p-4 w-full shadow-lg my-2">
+            <div className="lg:w-1/4 p-4 shadow-xl hover:shadow-2xl min-w-full">
               <Link
                 className="block relative rounded overflow-hidden"
                 href={"/product/wear-the-code"}
@@ -74,7 +73,7 @@ const Tshirts = () => {
                 <p className="mt-1">S, M, L, XL</p>
               </div>
             </div>
-            <div className="lg:w-1/4 md:w-1/2 p-4 w-full shadow-lg my-2">
+            <div className="lg:w-1/4 p-4 shadow-xl hover:shadow-2xl min-w-full">
               <Link
                 className="block relative rounded overflow-hidden"
                 href={"/product/wear-the-code"}
@@ -96,7 +95,7 @@ const Tshirts = () => {
                 <p className="mt-1">S, M, L, XL</p>
               </div>
             </div>
-            <div className="lg:w-1/4 md:w-1/2 p-4 w-full shadow-lg my-2">
+            <div className="lg:w-1/4 p-4 shadow-xl hover:shadow-2xl min-w-full">
               <Link
                 className="block relative rounded overflow-hidden"
                 href={"/product/wear-the-code"}
@@ -118,7 +117,7 @@ const Tshirts = () => {
                 <p className="mt-1">S, M, L, XL</p>
               </div>
             </div>
-            <div className="lg:w-1/4 md:w-1/2 p-4 w-full shadow-lg my-2">
+            <div className="lg:w-1/4 p-4 shadow-xl hover:shadow-2xl min-w-full">
               <Link
                 className="block relative rounded overflow-hidden"
                 href={"/product/wear-the-code"}
@@ -140,7 +139,7 @@ const Tshirts = () => {
                 <p className="mt-1">S, M, L, XL</p>
               </div>
             </div>
-            <div className="lg:w-1/4 md:w-1/2 p-4 w-full shadow-lg my-2">
+            <div className="lg:w-1/4 p-4 shadow-xl hover:shadow-2xl min-w-full">
               <Link
                 className="block relative rounded overflow-hidden"
                 href={"/product/wear-the-code"}
@@ -162,7 +161,7 @@ const Tshirts = () => {
                 <p className="mt-1">S, M, L, XL</p>
               </div>
             </div>
-            <div className="lg:w-1/4 md:w-1/2 p-4 w-full shadow-lg my-2">
+            <div className="lg:w-1/4 p-4 shadow-xl hover:shadow-2xl min-w-full">
               <Link
                 className="block relative rounded overflow-hidden"
                 href={"/product/wear-the-code"}

@@ -1,6 +1,6 @@
 import "@/styles/globals.css";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import { useEffect, useState } from "react";
 
 export default function App({ Component, pageProps }) {
@@ -47,6 +47,7 @@ export default function App({ Component, pageProps }) {
     try {
       if (localStorage.getItem("cart")) {
         setCart(JSON.parse(localStorage.getItem("cart")));
+        saveCart(JSON.parse(localStorage.getItem("cart")));
       }
     } catch (error) {
       console.error(error);
