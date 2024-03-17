@@ -33,7 +33,7 @@ const Signup = () => {
               for="name"
               class="block text-md  font-medium leading-6 text-gray-900"
             >
-              Username
+              Name
             </label>
             <div class="mt-2">
               <input
