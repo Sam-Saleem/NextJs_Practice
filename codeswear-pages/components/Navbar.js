@@ -5,11 +5,16 @@ import { FaCartPlus } from "react-icons/fa";
 import { IoCloseCircle, IoBagCheckSharp } from "react-icons/io5";
 import { FaRegSquarePlus, FaRegSquareMinus } from "react-icons/fa6";
 import { MdDeleteForever, MdAccountCircle } from "react-icons/md";
+import { RiLoginCircleLine } from "react-icons/ri";
 
-const Navbar = ({ cart, subTotal, clearCart, addToCart, removeFromCart }) => {
-  // useEffect(() => {
-  //   console.log("Navbar");
-  // }, [cart]);
+const Navbar = ({
+  user,
+  cart,
+  subTotal,
+  clearCart,
+  addToCart,
+  removeFromCart,
+}) => {
   const ref = useRef();
   const toggleCart = async () => {
     if (ref.current.classList.contains("translate-x-full")) {
@@ -35,33 +40,39 @@ const Navbar = ({ cart, subTotal, clearCart, addToCart, removeFromCart }) => {
       <div className="nav">
         <ul className="flex items-center space-x-6 font-bold md:text-md">
           <Link href="/tshirts">
-            <li>Tshirts</li>
+            <li className="hover:text-pink-600">Tshirts</li>
           </Link>
           <Link href="/hoodies">
-            <li>Hoodies</li>
+            <li className="hover:text-pink-600">Hoodies</li>
           </Link>
 
           <Link href="/stickers">
-            <li>Stickers</li>
+            <li className="hover:text-pink-600">Stickers</li>
           </Link>
 
           <Link href="/mugs">
-            <li>Mugs</li>
+            <li className="hover:text-pink-600">Mugs</li>
           </Link>
         </ul>
       </div>
       <div className="flex absolute right-0 top-3 mx-5  space-x-1 md:space-x-2">
-        <Link href={"/login"}>
-          <MdAccountCircle className="text-xl md:text-2xl cursor-pointer" />
-        </Link>
+        {user.value ? (
+          <Link href={"/login"}>
+            <MdAccountCircle className="text-xl md:text-2xl cursor-pointer hover:text-pink-600" />
+          </Link>
+        ) : (
+          <Link href={"/login"}>
+            <RiLoginCircleLine className="text-xl md:text-2xl cursor-pointer hover:text-pink-600" />
+          </Link>
+        )}
         <FaCartPlus
-          className="text-xl md:text-2xl cursor-pointer"
+          className="text-xl md:text-2xl cursor-pointer hover:text-pink-600"
           onClick={toggleCart}
         />
       </div>
       <div
         ref={ref}
-        className="w-72 h-[100vh] sideCart absolute right-0 top-0 bg-pink-100 py-10 px-8 transform transition-transform translate-x-full"
+        className="w-72 h-[100vh] sideCart overflow-y-scroll absolute right-0 top-0 bg-pink-100 py-10 px-8 transform transition-transform translate-x-full"
       >
         <h2 className="text-xl font-bold text-center mb-8">Shopping Cart</h2>
         <span
@@ -77,13 +88,13 @@ const Navbar = ({ cart, subTotal, clearCart, addToCart, removeFromCart }) => {
               checkout.
             </div>
           )}
-          {console.log("Cart: ", cart)}
           {Object.keys(cart).map((itemKey, index) => {
             return (
               <li key={index}>
                 <div className="item flex my-5">
                   <div className="w-2/3 font-semibold">
-                    {cart[itemKey].name}
+                    {cart[itemKey].name} ({cart[itemKey].size}/
+                    {cart[itemKey].variant})
                   </div>
                   <div className="w-1/3 font-bold flex items-center justify-center">
                     <FaRegSquarePlus

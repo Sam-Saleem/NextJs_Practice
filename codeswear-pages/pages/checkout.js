@@ -120,7 +120,8 @@ const Checkout = ({ cart, clearCart, addToCart, removeFromCart, subTotal }) => {
               <li key={index}>
                 <div className="item flex my-5">
                   <div className="w-2/3 font-semibold">
-                    {cart[itemKey].name}
+                    {cart[itemKey].name} ({cart[itemKey].size}/
+                    {cart[itemKey].variant})
                   </div>
                   <div className="w-1/3 font-bold flex items-center justify-start">
                     <FaRegSquarePlus

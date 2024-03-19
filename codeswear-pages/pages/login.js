@@ -1,10 +1,66 @@
 import React from "react";
 import Link from "next/link";
 import { FaSignInAlt } from "react-icons/fa";
+import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/router";
 
 const Login = () => {
+  const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleChange = (e) => {
+    if (e.target.name === "email") {
+      setEmail(e.target.value);
+    } else if (e.target.name === "password") {
+      setPassword(e.target.value);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const data = { email, password };
+    let res = await fetch("http://localhost:3000/api/login", {
+      method: "POST", // or 'PUT'
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    const response = await res.json();
+    if (response.success) {
+      localStorage.setItem("token", response.token);
+      toast.success("You are successfully logged in.", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      setEmail("");
+      setPassword("");
+      setTimeout(() => {
+        router.push("http://localhost:3000");
+      }, 1000);
+    } else {
+      toast.error(response.error, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  };
   return (
     <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+      <ToastContainer />
       <div class="sm:mx-auto sm:w-full sm:max-w-sm">
         <img
           class="mx-auto"
@@ -28,7 +84,7 @@ const Login = () => {
       </div>
 
       <div class="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form action="#" method="POST">
+        <form onSubmit={handleSubmit} method="POST">
           <div className="mb-5">
             <label
               for="email"
@@ -38,6 +94,8 @@ const Login = () => {
             </label>
             <div class="mt-2">
               <input
+                value={email}
+                onChange={handleChange}
                 id="email"
                 name="email"
                 type="email"
@@ -55,24 +113,10 @@ const Login = () => {
             >
               Password
             </label>
-            {/* <div class="flex items-center justify-between">
-              <label
-                for="password"
-                class="block text-sm font-medium leading-6 text-gray-900"
-              >
-                Password
-              </label>
-              <div class="text-sm">
-                <a
-                  href="#"
-                  class="font-semibold text-pink-600 hover:text-pink-500"
-                >
-                  Forgot password?
-                </a>
-              </div>
-            </div> */}
             <div class="mt-2">
               <input
+                value={password}
+                onChange={handleChange}
                 id="password"
                 name="password"
                 type="password"

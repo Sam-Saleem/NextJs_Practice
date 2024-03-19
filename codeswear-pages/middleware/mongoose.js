@@ -6,8 +6,8 @@ const connectDb = (handler) => async (req, res) => {
     return handler(req, res);
   }
   await mongoose.connect(process.env.MONGO_URI);
-  return handler(req, res);
   console.log("Database conected!");
+  return handler(req, res);
 };
 
 export default connectDb;

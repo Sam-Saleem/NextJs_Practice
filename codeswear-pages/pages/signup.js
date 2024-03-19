@@ -1,9 +1,64 @@
 import React from "react";
 import Link from "next/link";
 import { FaUserCheck } from "react-icons/fa";
+import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Signup = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleChange = (e) => {
+    if (e.target.name === "name") {
+      setName(e.target.value);
+    } else if (e.target.name === "email") {
+      setEmail(e.target.value);
+    } else if (e.target.name === "password") {
+      setPassword(e.target.value);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const data = { name, email, password };
+    let res = await fetch("http://localhost:3000/api/signup", {
+      method: "POST", // or 'PUT'
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    const response = await res.json();
+    if (res.status === 200) {
+      toast.success("Your account has been created successfully!", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      setEmail("");
+      setName("");
+      setPassword("");
+    } else {
+      toast.error("Something went wrong!", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  };
   return (
     <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+      <ToastContainer />
       <div class="sm:mx-auto sm:w-full sm:max-w-sm">
         <img
           class="mx-auto"
@@ -27,7 +82,7 @@ const Signup = () => {
       </div>
 
       <div class="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form action="#" method="POST">
+        <form onSubmit={handleSubmit} method="POST">
           <div className="mb-5">
             <label
               for="name"
@@ -37,6 +92,8 @@ const Signup = () => {
             </label>
             <div class="mt-2">
               <input
+                value={name}
+                onChange={handleChange}
                 id="name"
                 name="name"
                 type="text"
@@ -54,6 +111,8 @@ const Signup = () => {
             </label>
             <div class="mt-2">
               <input
+                value={email}
+                onChange={handleChange}
                 id="email"
                 name="email"
                 type="email"
@@ -71,24 +130,11 @@ const Signup = () => {
             >
               Password
             </label>
-            {/* <div class="flex items-center justify-between">
-              <label
-                for="password"
-                class="block text-sm font-medium leading-6 text-gray-900"
-              >
-                Password
-              </label>
-              <div class="text-sm">
-                <a
-                  href="#"
-                  class="font-semibold text-pink-600 hover:text-pink-500"
-                >
-                  Forgot password?
-                </a>
-              </div>
-            </div> */}
+
             <div class="mt-2">
               <input
+                value={password}
+                onChange={handleChange}
                 id="password"
                 name="password"
                 type="password"
@@ -98,32 +144,6 @@ const Signup = () => {
               />
             </div>
           </div>
-          {/* <div class="flex items-center justify-between">
-            <div class="flex items-start">
-              <div class="flex items-center h-5">
-                <input
-                  id="remember"
-                  aria-describedby="remember"
-                  type="checkbox"
-                  class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300"
-                  required=""
-                />
-              </div>
-              <div class="ml-3 text-sm">
-                <label for="remember" class="text-gray-800">
-                  Remember me
-                </label>
-              </div>
-            </div>
-            <div class="text-sm">
-              <Link
-                href="/forgot"
-                class="font-semibold text-pink-600 hover:text-pink-500"
-              >
-                Forgot password?
-              </Link>
-            </div>
-          </div> */}
           <div className="mt-12">
             <button
               type="submit"
@@ -134,16 +154,6 @@ const Signup = () => {
             </button>
           </div>
         </form>
-
-        {/* <p class="mt-10 text-center text-sm text-gray-500">
-          Not a member?
-          <a
-            href="#"
-            class="font-semibold leading-6 text-pink-600 hover:text-pink-500"
-          >
-            Start a 14 day free trial
-          </a>
-        </p> */}
       </div>
     </div>
   );

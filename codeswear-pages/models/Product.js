@@ -15,6 +15,8 @@ const ProductSchema = new mongoose.Schema(
   { timestamps: true }
 );
 // OverwriteModelError: Cannot overwrite `Product` model once compiled.
-mongoose.models = {};
+// mongoose.models = {};
+// export default mongoose.model("Product", ProductSchema);
 
-export default mongoose.model("Product", ProductSchema);
+export default mongoose.models.Product ||
+  mongoose.model("Product", ProductSchema);
