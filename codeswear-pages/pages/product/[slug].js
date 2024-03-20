@@ -18,11 +18,11 @@ const ProductDetails = ({ addToCart, buyNow, product, variants }) => {
   const [service, setService] = useState(null);
 
   const refreshVariant = (newColor, newSize) => {
-    let url = `http://localhost:3000/product/${variants[newColor][newSize]["slug"]}`;
+    let url = `${process.env.NEXT_PUBLIC_HOST}/product/${variants[newColor][newSize]["slug"]}`;
     window.location = url;
   };
   const checkServiceability = async () => {
-    let pins = await fetch("http://localhost:3000/api/pincode");
+    let pins = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pincode`);
     let pinJson = await pins.json();
     if (pinJson.includes(parseInt(pin))) {
       setService(true);

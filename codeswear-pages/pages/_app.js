@@ -3,9 +3,13 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import LoadingBar from "react-top-loading-bar";
+// import { ToastContainer, toast } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
+  const [progress, setProgress] = useState(0);
   const [cart, setCart] = useState({});
   const [subTotal, setSubTotal] = useState(0);
   const [user, setUser] = useState({ value: null });
@@ -52,9 +56,29 @@ export default function App({ Component, pageProps }) {
     saveCart(newCart);
     router.push("/checkout");
   };
-
+  const logout = () => {
+    // toast.success("Logged-out successfully!", {
+    //   position: "top-center",
+    //   autoClose: 2000,
+    //   hideProgressBar: false,
+    //   closeOnClick: true,
+    //   pauseOnHover: true,
+    //   draggable: true,
+    //   progress: undefined,
+    // });
+    localStorage.removeItem("token");
+    setUser({ value: null });
+    setKey(Math.random());
+    router.push("/");
+  };
   useEffect(() => {
     console.log("Hey I am an useEffect from _app.js");
+    router.events.on("routeChangeStart", () => {
+      setProgress(30);
+    });
+    router.events.on("routeChangeComplete", () => {
+      setProgress(100);
+    });
     try {
       if (localStorage.getItem("cart")) {
         setCart(JSON.parse(localStorage.getItem("cart")));
@@ -73,15 +97,25 @@ export default function App({ Component, pageProps }) {
 
   return (
     <>
-      <Navbar
-        key={key}
-        user={user}
-        cart={cart}
-        subTotal={subTotal}
-        clearCart={clearCart}
-        addToCart={addToCart}
-        removeFromCart={removeFromCart}
+      <LoadingBar
+        color="#fe3676"
+        progress={progress}
+        onLoaderFinished={() => setProgress(0)}
+        waitingTime={500}
       />
+      {key && (
+        <Navbar
+          key={key}
+          user={user}
+          cart={cart}
+          subTotal={subTotal}
+          clearCart={clearCart}
+          addToCart={addToCart}
+          removeFromCart={removeFromCart}
+          logout={logout}
+        />
+      )}
+      {/* <ToastContainer /> */}
       <Component
         {...pageProps}
         cart={cart}

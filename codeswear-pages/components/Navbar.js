@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FaCartPlus } from "react-icons/fa";
@@ -14,8 +14,11 @@ const Navbar = ({
   clearCart,
   addToCart,
   removeFromCart,
+  logout,
 }) => {
+  const [dropdown, setDropdown] = useState(false);
   const ref = useRef();
+
   const toggleCart = async () => {
     if (ref.current.classList.contains("translate-x-full")) {
       ref.current.classList.remove("translate-x-full");
@@ -25,6 +28,7 @@ const Navbar = ({
       ref.current.classList.add("translate-x-full");
     }
   };
+
   return (
     <div className="flex flex-col justify-center items-center md:flex-row md:justify-start py-2 shadow-md sticky top-0 z-10 bg-white">
       <div className="logo mx-3">
@@ -57,13 +61,53 @@ const Navbar = ({
       </div>
       <div className="flex absolute right-0 top-3 mx-5  space-x-1 md:space-x-2">
         {user.value ? (
-          <Link href={"/login"}>
-            <MdAccountCircle className="text-xl md:text-2xl cursor-pointer hover:text-pink-600" />
-          </Link>
+          <MdAccountCircle
+            onMouseOver={() => {
+              setDropdown(true);
+            }}
+            onMouseLeave={() => {
+              setDropdown(false);
+            }}
+            className="text-xl md:text-2xl cursor-pointer hover:text-pink-600"
+          />
         ) : (
           <Link href={"/login"}>
             <RiLoginCircleLine className="text-xl md:text-2xl cursor-pointer hover:text-pink-600" />
           </Link>
+        )}
+        {dropdown && (
+          <div
+            onMouseOver={() => {
+              setDropdown(true);
+            }}
+            onMouseLeave={() => {
+              setDropdown(false);
+            }}
+            className="absolute right-6 top-6 bg-pink-200 border rounded-md px-5 py-3 w-32 shadow-xl"
+          >
+            <ul>
+              <li className="py-1 text-sm font-bold">
+                <Link href={"/myaccount"} className="hover:text-pink-600">
+                  My Account
+                </Link>
+              </li>
+              <li className="py-1 text-sm font-bold">
+                <Link href={"/orders"} className="hover:text-pink-600">
+                  Orders
+                </Link>
+              </li>
+              <li className="py-1 text-sm font-bold">
+                <button
+                  onClick={() => {
+                    logout();
+                  }}
+                  className="hover:text-pink-600"
+                >
+                  Logout
+                </button>
+              </li>
+            </ul>
+          </div>
         )}
         <FaCartPlus
           className="text-xl md:text-2xl cursor-pointer hover:text-pink-600"
@@ -72,7 +116,7 @@ const Navbar = ({
       </div>
       <div
         ref={ref}
-        className="w-72 h-[100vh] sideCart overflow-y-scroll absolute right-0 top-0 bg-pink-100 py-10 px-8 transform transition-transform translate-x-full"
+        className="w-72 h-[100vh] sideCart overflow-y-scroll absolute right-0 top-0 bg-pink-100 py-10 px-8 transform transition-transform translate-x-full shadow-xl"
       >
         <h2 className="text-xl font-bold text-center mb-8">Shopping Cart</h2>
         <span
