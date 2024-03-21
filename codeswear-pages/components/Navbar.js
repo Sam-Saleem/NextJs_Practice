@@ -85,7 +85,7 @@ const Navbar = ({
             }}
             className="absolute right-6 top-6 bg-pink-200 border rounded-md px-5 py-3 w-32 shadow-xl"
           >
-            <ul>
+            <ul className="text-center">
               <li className="py-1 text-sm font-bold">
                 <Link href={"/myaccount"} className="hover:text-pink-600">
                   My Account
@@ -93,7 +93,7 @@ const Navbar = ({
               </li>
               <li className="py-1 text-sm font-bold">
                 <Link href={"/orders"} className="hover:text-pink-600">
-                  Orders
+                  My Orders
                 </Link>
               </li>
               <li className="py-1 text-sm font-bold">

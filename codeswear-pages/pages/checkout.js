@@ -1,9 +1,56 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaRegSquarePlus, FaRegSquareMinus } from "react-icons/fa6";
 import { IoBagCheckSharp } from "react-icons/io5";
 // import { MdDeleteForever } from "react-icons/md";
 import Link from "next/link";
 const Checkout = ({ cart, clearCart, addToCart, removeFromCart, subTotal }) => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [address, setAddress] = useState("");
+  const [phone, setPhone] = useState("");
+  const [pincode, setPincode] = useState("");
+
+  const [state, setState] = useState("");
+  const [city, setCity] = useState("");
+
+  const [disabled, setDisabled] = useState(true);
+
+  const handleChange = async (e) => {
+    if (e.target.name === "name") {
+      setName(e.target.value);
+    } else if (e.target.name === "email") {
+      setEmail(e.target.value);
+    } else if (e.target.name === "address") {
+      setAddress(e.target.value);
+    } else if (e.target.name === "phone") {
+      setPhone(e.target.value);
+    } else if (e.target.name === "pincode") {
+      setPincode(e.target.value);
+      let pin = e.target.value;
+      if (pin.length === 6) {
+        console.log(pin);
+        let pins = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pincode`);
+        let pinJson = await pins.json();
+        if (Object.keys(pinJson).includes(pin)) {
+          setState(pinJson[pin][1]);
+          setCity(pinJson[pin][0]);
+        }
+      } else {
+        setState("");
+        setCity("");
+      }
+    }
+    // else if (e.target.name === "state") {
+    //   setState(e.target.value);
+    // } else if (e.target.name === "city") {
+    //   setCity(e.target.value);
+    // }
+    // if (name && email && address && phone && city && state && pincode) {
+    //   setDisabled(false);
+    // } else {
+    //   setDisabled(true);
+    // }
+  };
   return (
     <div className="conatiner m-auto px-8 md:px-20 py-10">
       <h1 className="font-bold text-3xl text-center mb-8">Checkout</h1>
@@ -16,6 +63,8 @@ const Checkout = ({ cart, clearCart, addToCart, removeFromCart, subTotal }) => {
               Name
             </label>
             <input
+              value={name}
+              onChange={handleChange}
               type="text"
               id="name"
               name="name"
@@ -29,6 +78,8 @@ const Checkout = ({ cart, clearCart, addToCart, removeFromCart, subTotal }) => {
               Email
             </label>
             <input
+              value={email}
+              onChange={handleChange}
               type="email"
               id="email"
               name="email"
@@ -47,12 +98,14 @@ const Checkout = ({ cart, clearCart, addToCart, removeFromCart, subTotal }) => {
             </label>
 
             <textarea
+              value={address}
+              onChange={handleChange}
               cols="30"
               rows="2"
               id="address"
               name="address"
               className="w-full bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-            ></textarea>
+            />
           </div>
         </div>
         <div className="mx-auto flex my-2">
@@ -61,20 +114,28 @@ const Checkout = ({ cart, clearCart, addToCart, removeFromCart, subTotal }) => {
               Phone
             </label>
             <input
+              value={phone}
+              onChange={handleChange}
               type="number"
               id="phone"
               name="phone"
               className="w-full bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
             />
           </div>
+
           <div className="px-2 w-1/2 mb-4">
-            <label htmlFor="city" className="leading-7 text-sm text-gray-600">
-              City
+            <label
+              htmlFor="pincode"
+              className="leading-7 text-sm text-gray-600"
+            >
+              PinCode
             </label>
             <input
-              type="text"
-              id="city"
-              name="city"
+              value={pincode}
+              onChange={handleChange}
+              type="number"
+              id="pincode"
+              name="pincode"
               className="w-full bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
             />
           </div>
@@ -85,24 +146,27 @@ const Checkout = ({ cart, clearCart, addToCart, removeFromCart, subTotal }) => {
               State
             </label>
             <input
+              value={state}
+              // onChange={handleChange}
               type="text"
               id="state"
               name="state"
               className="w-full bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              readOnly
             />
           </div>
           <div className="px-2 w-1/2 mb-4">
-            <label
-              htmlFor="pincode"
-              className="leading-7 text-sm text-gray-600"
-            >
-              PinCode
+            <label htmlFor="city" className="leading-7 text-sm text-gray-600">
+              City
             </label>
             <input
-              type="number"
-              id="pincode"
-              name="pincode"
+              value={city}
+              // onChange={handleChange}
+              type="text"
+              id="city"
+              name="city"
               className="w-full bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              readOnly
             />
           </div>
         </div>
@@ -120,7 +184,6 @@ const Checkout = ({ cart, clearCart, addToCart, removeFromCart, subTotal }) => {
               checkout.
             </div>
           )}
-          {console.log("Cart: ", cart)}
           {Object.keys(cart).map((itemKey, index) => {
             return (
               <li key={index}>
@@ -165,7 +228,12 @@ const Checkout = ({ cart, clearCart, addToCart, removeFromCart, subTotal }) => {
         </ol>
         <div className="font-bold text-end my-5">SubTotal: Rs.{subTotal}</div>
         <Link href={"/order"}>
-          <button className="flex mx-auto text-white bg-pink-500 border-0 py-2 px-2 focus:outline-none hover:bg-pink-600 rounded">
+          <button
+            disabled={
+              !(name && email && address && phone && pincode && city && state)
+            }
+            className="flex mx-auto text-white bg-pink-500 border-0 py-2 px-2 focus:outline-none hover:bg-pink-600 rounded disabled:bg-pink-400"
+          >
             <IoBagCheckSharp className="m-1" />
             Pay Rs.{subTotal}
           </button>
