@@ -66,7 +66,7 @@ export default function App({ Component, pageProps }) {
     //   draggable: true,
     //   progress: undefined,
     // });
-    localStorage.removeItem("token");
+    localStorage.removeItem("myuser");
     setUser({ value: null });
     setKey(Math.random());
     router.push("/");
@@ -79,7 +79,12 @@ export default function App({ Component, pageProps }) {
     router.events.on("routeChangeComplete", () => {
       setProgress(100);
     });
+
     try {
+      if (localStorage.getItem("myuser")) {
+        const myuser = JSON.parse(localStorage.getItem("myuser"));
+        setUser({ value: myuser });
+      }
       if (localStorage.getItem("cart")) {
         setCart(JSON.parse(localStorage.getItem("cart")));
         saveCart(JSON.parse(localStorage.getItem("cart")));
@@ -88,10 +93,7 @@ export default function App({ Component, pageProps }) {
       console.error(error);
       localStorage.clear();
     }
-    const token = localStorage.getItem("token");
-    if (token) {
-      setUser({ value: token });
-    }
+
     setKey(Math.random());
   }, [router.query]);
 
@@ -118,6 +120,7 @@ export default function App({ Component, pageProps }) {
       {/* <ToastContainer /> */}
       <Component
         {...pageProps}
+        user={user}
         cart={cart}
         subTotal={subTotal}
         clearCart={clearCart}

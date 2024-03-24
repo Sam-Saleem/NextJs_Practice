@@ -7,18 +7,18 @@ const Orders = () => {
   const [orders, setOrders] = useState();
   useEffect(() => {
     const fetchOrders = async () => {
+      const myuser = JSON.parse(localStorage.getItem("myuser"));
       let res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/myorders`, {
         method: "POST", // or 'PUT'
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ token: localStorage.getItem("token") }),
+        body: JSON.stringify({ token: myuser.token }),
       });
       const response = await res.json();
       setOrders(response.orders);
-      console.log(response.orders);
     };
-    if (!localStorage.getItem("token")) {
+    if (!localStorage.getItem("myuser")) {
       router.push("/");
     } else {
       fetchOrders();
@@ -32,62 +32,58 @@ const Orders = () => {
           <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="inline-block min-w-full sm:px-6 lg:px-8">
               <div className="overflow-hidden">
-                {!orders?.length && (
-                  <div className="flex justify-center align-middle p-10">
-                    No orders
-                  </div>
-                )}
-                <table className="min-w-full text-left text-sm font-light text-surface">
-                  <thead className="border-b border-neutral-200 font-medium">
-                    <tr>
-                      <th scope="col" className="px-6 py-4">
-                        # OrderId
-                      </th>
-                      <th scope="col" className="px-6 py-4">
-                        email
-                      </th>
-                      <th scope="col" className="px-6 py-4">
-                        Amount
-                      </th>
-                      <th scope="col" className="px-6 py-4">
-                        Status
-                      </th>
-                      <th scope="col" className="px-6 py-4">
-                        Details
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {orders?.map((order) => {
-                      return (
-                        <tr
-                          key={order.orderId}
-                          className="border-b border-neutral-200 transition duration-300 ease-in-out hover:bg-neutral-100"
-                        >
-                          <td className="whitespace-nowrap px-6 py-4 font-medium">
-                            {order.orderId}
-                          </td>
-                          <td className="whitespace-nowrap px-6 py-4">
-                            {order.email}
-                          </td>
-                          <td className="whitespace-nowrap px-6 py-4">
-                            {order.amount}
-                          </td>
-                          <td className="whitespace-nowrap px-6 py-4">
-                            {order.status}
-                          </td>
-                          <td className="whitespace-nowrap px-6 py-4">
-                            <Link
-                              href={`/order?id=${order._id}`}
-                              className="font-semibold text-blue-600 underline"
-                            >
-                              Details
-                            </Link>
-                          </td>
-                        </tr>
-                      );
-                    })}
-                    {/* <tr className="border-b border-neutral-200 transition duration-300 ease-in-out hover:bg-neutral-100">
+                {orders?.length ? (
+                  <table className="min-w-full text-left text-sm font-light text-surface">
+                    <thead className="border-b border-neutral-200 font-medium">
+                      <tr>
+                        <th scope="col" className="px-6 py-4 text-base">
+                          # OrderId
+                        </th>
+                        <th scope="col" className="px-6 py-4 text-base">
+                          Email
+                        </th>
+                        <th scope="col" className="px-6 py-4 text-base">
+                          Amount
+                        </th>
+                        <th scope="col" className="px-6 py-4 text-base">
+                          Status
+                        </th>
+                        <th scope="col" className="px-6 py-4 text-base">
+                          Details
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {orders?.map((order) => {
+                        return (
+                          <tr
+                            key={order.orderId}
+                            className="border-b border-neutral-200 transition duration-300 ease-in-out hover:bg-neutral-100"
+                          >
+                            <td className="whitespace-nowrap px-6 py-4 font-medium">
+                              {order.orderId}
+                            </td>
+                            <td className="whitespace-nowrap px-6 py-4">
+                              {order.email}
+                            </td>
+                            <td className="whitespace-nowrap px-6 py-4">
+                              {order.amount}
+                            </td>
+                            <td className="whitespace-nowrap px-6 py-4">
+                              {order.status}
+                            </td>
+                            <td className="whitespace-nowrap px-6 py-4">
+                              <Link
+                                href={`/order?id=${order._id}`}
+                                className="font-semibold text-blue-600 underline"
+                              >
+                                Details
+                              </Link>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                      {/* <tr className="border-b border-neutral-200 transition duration-300 ease-in-out hover:bg-neutral-100">
                       <td className="whitespace-nowrap px-6 py-4 font-medium">
                         2
                       </td>
@@ -103,8 +99,13 @@ const Orders = () => {
                       <td className="whitespace-nowrap px-6 py-4">Wild</td>
                       <td className="whitespace-nowrap px-6 py-4">@twitter</td>
                     </tr> */}
-                  </tbody>
-                </table>
+                    </tbody>
+                  </table>
+                ) : (
+                  <div className="flex justify-center align-middle p-10 font-semibold text-lg text-slate-700">
+                    You haven't ordered anything yet!
+                  </div>
+                )}
               </div>
             </div>
           </div>

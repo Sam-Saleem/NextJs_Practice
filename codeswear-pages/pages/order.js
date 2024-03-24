@@ -1,13 +1,27 @@
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import mongoose from "mongoose";
 import Order from "@/models/Order";
 
-const MyOrder = ({ order }) => {
+const MyOrder = ({ order, clearCart }) => {
+  const [orderDate, setOrderDate] = useState();
   const products = order.products;
-  // const router = useRouter();
-  // const { orderId, id } = router.query;
-  console.log(order);
+  const router = useRouter();
+  useEffect(() => {
+    if (router.query.clearCart == 1) {
+      clearCart();
+    }
+    const d = new Date(order.createdAt);
+    setOrderDate(
+      d.toLocaleDateString("en-PK", {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })
+    );
+  }, []);
+
   return (
     <div>
       <section className="text-gray-600 body-font overflow-hidden">
@@ -20,14 +34,20 @@ const MyOrder = ({ order }) => {
               <h1 className="text-gray-900 text-xl md:text-3xl title-font font-medium mb-4">
                 Order Id: #{order.orderId}
               </h1>
-              <p className="leading-relaxed mb-4">
+              <p className="leading-relaxed">
                 Yayy! Your Order has been successfully placed!
-                <p>
-                  Your Payment Status is:{" "}
-                  <span className="font-semibold text-slate-700">
-                    {order.status}
-                  </span>
-                </p>
+              </p>
+              <p className="leading-relaxed">
+                Order placed on:{" "}
+                <span className="font-semibold text-slate-700">
+                  {orderDate}
+                </span>
+              </p>
+              <p className="mb-4">
+                Your Payment Status is:{" "}
+                <span className="font-semibold text-slate-700">
+                  {order.status}
+                </span>
               </p>
               <h3 className="text-gray-900 text-center text-xl font-semibold">
                 Order Items
@@ -55,7 +75,8 @@ const MyOrder = ({ order }) => {
                       {products[key].qty}
                     </span>
                     <span className="w-1/4 text-gray-900 text-start">
-                      Rs.{products[key].price * products[key].qty}
+                      Rs.{products[key].price} x {products[key].qty} = Rs.
+                      {products[key].price * products[key].qty}
                     </span>
                   </div>
                 );

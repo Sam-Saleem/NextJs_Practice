@@ -7,9 +7,11 @@ const OrderSchema = new mongoose.Schema(
     paymentInfo: { type: String, default: "" },
     products: { type: Object, required: true },
     address: { type: String, required: true },
+    transactionId: { type: String, default: "" },
     amount: { type: Number, required: true },
     status: { type: String, default: "Initiating", required: true },
     // Initiating, Pending, Paid
+    deliveryStatus: { type: String, default: "unshipped", required: true },
   },
   { timestamps: true }
 );

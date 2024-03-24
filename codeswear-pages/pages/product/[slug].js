@@ -1,26 +1,31 @@
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import mongoose from "mongoose";
 import Product from "@/models/Product";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Error from "next/error";
 
-const ProductDetails = ({ addToCart, buyNow, product, variants }) => {
+const ProductDetails = ({ addToCart, buyNow, product, variants, error }) => {
   const router = useRouter();
   const { slug } = router.query;
-  const [color, setColor] = useState(product.color);
-  const [size, setSize] = useState(product.size);
-
-  console.log(product);
-  console.log(variants);
+  const [color, setColor] = useState(product?.color);
+  const [size, setSize] = useState(product?.size);
 
   const [pin, setPin] = useState();
   const [service, setService] = useState(null);
 
+  useEffect(() => {
+    setColor(product?.color);
+    setSize(product?.size);
+  }, [router.query]);
+
   const refreshVariant = (newColor, newSize) => {
     let url = `${process.env.NEXT_PUBLIC_HOST}/product/${variants[newColor][newSize]["slug"]}`;
-    window.location = url;
+    // window.location = url;
+    router.push(url);
   };
+
   const checkServiceability = async () => {
     let pins = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pincode`);
     let pinJson = await pins.json();
@@ -52,11 +57,9 @@ const ProductDetails = ({ addToCart, buyNow, product, variants }) => {
     setService(null);
     setPin(e.target.value);
   };
-  // const buyNow = async () => {
-  //   await clearCart();
-  //   await addToCart(slug, 1, product.price, product.title, size, color);
-  //   router.push("/checkout");
-  // };
+  if (error) {
+    return <Error statusCode={error} />;
+  }
   return (
     <div>
       <section className="text-gray-600 body-font overflow-hidden">
@@ -73,11 +76,13 @@ const ProductDetails = ({ addToCart, buyNow, product, variants }) => {
         />
         <div className="container px-5 py-10 md:py-24 mx-auto">
           <div className="lg:4/5 mx-auto flex flex-wrap">
-            <img
-              alt="ecommerce"
-              className="lg:w-1/2 w-full lg:h-auto px-10 rounded"
-              src={product.img}
-            />
+            <div className="lg:w-1/2 px-10">
+              <img
+                alt="ecommerce"
+                className="w-full lg:h-auto rounded-3xl"
+                src={product.img}
+              />
+            </div>
             <div className="lg:w-1/2 w-full lg:py-6 mt-6 lg:mt-0">
               <h2 className="text-sm title-font text-gray-500 tracking-widest">
                 CODESWEAR
@@ -310,10 +315,17 @@ const ProductDetails = ({ addToCart, buyNow, product, variants }) => {
                 </div>
               </div>
               <div className="flex md:mt-10">
-                <span className="title-font font-medium text-xl md:text-2xl text-gray-900">
-                  Rs.{product.price}
-                </span>
+                {product.availableQty ? (
+                  <span className="title-font font-medium text-xl md:text-2xl text-gray-900">
+                    Rs.{product.price}
+                  </span>
+                ) : (
+                  <span className="title-font font-medium text-xl md:text-2xl text-gray-900">
+                    Out of Stock!!!
+                  </span>
+                )}
                 <button
+                  disabled={!product.availableQty}
                   onClick={() => {
                     addToCart(
                       slug,
@@ -324,15 +336,16 @@ const ProductDetails = ({ addToCart, buyNow, product, variants }) => {
                       color
                     );
                   }}
-                  className="flex ml-auto lg:ml-10 text-white bg-pink-500 border-0 py-2 px-2 md:px-4 focus:outline-none hover:bg-pink-600 rounded"
+                  className="disabled:bg-pink-400 flex ml-auto lg:ml-10 text-white bg-pink-500 border-0 py-2 px-2 md:px-4 focus:outline-none hover:bg-pink-600 rounded"
                 >
                   Add to Cart
                 </button>
                 <button
+                  disabled={!product.availableQty}
                   onClick={() => {
                     buyNow(slug, 1, product.price, product.title, size, color);
                   }}
-                  className="flex ml-2 md:ml-4 text-white bg-pink-500 border-0 py-2 px-2 md:px-4 focus:outline-none hover:bg-pink-600 rounded"
+                  className="disabled:bg-pink-400 flex ml-2 md:ml-4 text-white bg-pink-500 border-0 py-2 px-2 md:px-4 focus:outline-none hover:bg-pink-600 rounded"
                 >
                   Buy Now
                 </button>
@@ -391,9 +404,15 @@ export async function getServerSideProps(context) {
   if (!mongoose.connections[0].readyState) {
     await mongoose.connect(process.env.MONGO_URI);
   }
-
   // Getting all the products:
   let product = await Product.findOne({ slug: context.query.slug });
+  if (!product) {
+    return {
+      props: {
+        error: 404,
+      },
+    };
+  }
   let variants = await Product.find({
     title: product.title,
     category: product.category,
