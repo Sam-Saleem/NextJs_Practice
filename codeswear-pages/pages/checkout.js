@@ -23,12 +23,47 @@ const Checkout = ({
   // const [disabled, setDisabled] = useState(true);
 
   useEffect(() => {
+    // if (user.value) {
+    //   setEmail(user.value.email);
+    // }
+    const getUser = async (token) => {
+      const data = { user: token };
+      let res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/getuser`, {
+        method: "POST", // or 'PUT'
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      const response = await res.json();
+      const userData = response.user;
+      setEmail(userData.email);
+      setName(userData.name);
+      setAddress(userData.address);
+      setPhone(userData.phone);
+      setPincode(userData.pincode);
+      getPincode(userData.pincode);
+    };
+
     if (user.value) {
-      setEmail(user.value.email);
+      getUser(user.value.token);
     }
   }, [user]);
-
-  const handleChange = async (e) => {
+  const getPincode = async (pin) => {
+    // let pin = e.target.value;
+    if (pin.length === 6) {
+      let pins = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pincode`);
+      let pinJson = await pins.json();
+      if (Object.keys(pinJson).includes(pin)) {
+        setState(pinJson[pin][1]);
+        setCity(pinJson[pin][0]);
+      }
+    } else {
+      setState("");
+      setCity("");
+    }
+  };
+  const handleChange = (e) => {
     if (e.target.name === "name") {
       setName(e.target.value);
     } else if (e.target.name === "email") {
@@ -39,18 +74,7 @@ const Checkout = ({
       setPhone(e.target.value);
     } else if (e.target.name === "pincode") {
       setPincode(e.target.value);
-      let pin = e.target.value;
-      if (pin.length === 6) {
-        let pins = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pincode`);
-        let pinJson = await pins.json();
-        if (Object.keys(pinJson).includes(pin)) {
-          setState(pinJson[pin][1]);
-          setCity(pinJson[pin][0]);
-        }
-      } else {
-        setState("");
-        setCity("");
-      }
+      getPincode(e.target.value);
     }
     // else if (e.target.name === "state") {
     //   setState(e.target.value);
