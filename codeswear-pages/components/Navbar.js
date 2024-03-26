@@ -37,7 +37,7 @@ const Navbar = ({
   // };
 
   return (
-    <>
+    <navbar>
       {dropdown && (
         <div
           onMouseOver={() => {
@@ -220,7 +220,7 @@ const Navbar = ({
           </div>
         </div>
       </div>
-    </>
+    </navbar>
   );
 };
 
