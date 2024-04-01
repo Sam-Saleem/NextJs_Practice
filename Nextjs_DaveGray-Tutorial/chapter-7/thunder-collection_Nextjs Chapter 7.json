@@ -1,0 +1,67 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Nextjs Chapter 7",
+    "dateExported": "2024-04-01T11:30:52.328Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "67202b98-06b1-430b-a08c-6660ddd0079f",
+            "colId": "fac6b37a-5111-4bd5-bbfb-78b9642284cc",
+            "containerId": "",
+            "name": "Hello",
+            "url": "http://localhost:3000/api/hello",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2024-04-01T09:41:58.984Z",
+            "modified": "2024-04-01T09:42:34.373Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "0283eefb-382f-4267-9438-965dffeed40f",
+            "colId": "fac6b37a-5111-4bd5-bbfb-78b9642284cc",
+            "containerId": "",
+            "name": "Echo",
+            "url": "http://localhost:3000/api/echo?name=Sehar&message=Hello",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2024-04-01T10:19:23.329Z",
+            "modified": "2024-04-01T10:27:24.590Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "name",
+                    "value": "Sehar",
+                    "isPath": false
+                },
+                {
+                    "name": "message",
+                    "value": "Hello",
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "0ddfc87d-1533-43ef-9cbc-576df8a1252b",
+            "colId": "fac6b37a-5111-4bd5-bbfb-78b9642284cc",
+            "containerId": "",
+            "name": "Feedback",
+            "url": "http://localhost:3000/api/feedback",
+            "method": "POST",
+            "sortNum": 50000,
+            "created": "2024-04-01T11:25:20.466Z",
+            "modified": "2024-04-01T11:30:20.215Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\":\"Sehar\",\n  \"email\":\"sehar@gmail.com\",\n  \"message\":\"Hello there!\"\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}

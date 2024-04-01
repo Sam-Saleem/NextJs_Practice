@@ -1,0 +1,84 @@
+{
+    "info": {
+        "_postman_id": "350e54e1-f028-4666-8ec3-13c9479717e2",
+        "name": "Nextjs Chapter 7",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "description": ""
+    },
+    "item": [
+        {
+            "name": "Hello",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:3000/api/hello",
+                    "path": [
+                        "api",
+                        "hello"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000"
+                }
+            }
+        },
+        {
+            "name": "Echo",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:3000/api/echo?name=Sehar&message=Hello",
+                    "query": [
+                        {
+                            "key": "name",
+                            "value": "Sehar"
+                        },
+                        {
+                            "key": "message",
+                            "value": "Hello"
+                        }
+                    ],
+                    "variable": [],
+                    "path": [
+                        "api",
+                        "echo"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000"
+                }
+            }
+        },
+        {
+            "name": "Feedback",
+            "request": {
+                "method": "POST",
+                "url": {
+                    "raw": "http://localhost:3000/api/feedback",
+                    "path": [
+                        "api",
+                        "feedback"
+                    ],
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000"
+                },
+                "body": {
+                    "mode": "raw",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    },
+                    "raw": "{\n  \"name\":\"Sehar\",\n  \"email\":\"sehar@gmail.com\",\n  \"message\":\"Hello there!\"\n}"
+                }
+            }
+        }
+    ]
+}
