@@ -1,0 +1,34 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Nextjs Chapter 10",
+    "dateExported": "2024-04-04T09:05:33.906Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "1e5ad21b-1b74-4496-9628-497010dfecc6",
+            "colId": "dd55c3f9-0575-401d-8025-fa817a1f177d",
+            "containerId": "",
+            "name": "Revalidate (On-Demand)",
+            "url": "http://localhost:3000/api/revalidate?path=/&secret=6679a3f9d66fd5da7dd13b94d4ed3762",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-04-04T08:56:09.587Z",
+            "modified": "2024-04-04T08:56:14.113Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "path",
+                    "value": "/",
+                    "isPath": false
+                },
+                {
+                    "name": "secret",
+                    "value": "6679a3f9d66fd5da7dd13b94d4ed3762",
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        }
+    ]
+}

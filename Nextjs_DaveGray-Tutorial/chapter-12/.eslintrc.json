@@ -1,0 +1,5 @@
+{
+  "extends": "next/core-web-vitals",
+  // added for the apostrophe eslint error
+  "rules": {"react/no-unescaped-entities":"off"}
+}
