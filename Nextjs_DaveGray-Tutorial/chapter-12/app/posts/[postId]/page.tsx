@@ -2,18 +2,19 @@ import getFormattedDate from "@/lib/getFormattedDate";
 import { getPostByName, getPostsMeta } from "@/lib/posts";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import "highlight.js/styles/github-dark.css";
 
-export const revalidate = 0;
+export const revalidate = 86400; //(1 day) for deployement
 
 type Props = { params: { postId: string } };
 
 // Now this page (SSR)server-side renders at runtime but as we know about the possible params(blogposts) so we can change it to SSG(static site generation) using this function:
-// export async function generateStaticParams() {
-//   const posts = await getPostsMeta(); //deduped!
+export async function generateStaticParams() {
+  const posts = await getPostsMeta(); //deduped!
 
-//   if (!posts) return [];
-//   return posts.map((post) => ({ postId: post.id }));
-// }
+  if (!posts) return [];
+  return posts.map((post) => ({ postId: post.id }));
+}
 
 export async function generateMetadata({ params: { postId } }: Props) {
   const post = await getPostByName(`${postId}.mdx`); //deduped!
@@ -31,7 +32,7 @@ export default async function Post({ params: { postId } }: Props) {
   const { meta, content } = post;
   const pubDate = getFormattedDate(meta.date);
   const tags = meta.tags.map((tag, i) => (
-    <Link key={i} href={`tags/${tag}`}>
+    <Link key={i} href={`/tags/${tag}`}>
       {tag}
     </Link>
   ));

@@ -1,4 +1,10 @@
 import { compileMDX } from "next-mdx-remote/rsc";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeHighlight from "rehype-highlight";
+import rehypeSlug from "rehype-slug";
+import Video from "@/app/components/Video";
+import CustomImage from "@/app/components/CustomImage";
+
 // For requesting GitHub Data
 
 // Filetrees we are geeting from the git trees
@@ -34,7 +40,28 @@ export async function getPostByName(
     title: string;
     date: string;
     tags: string[];
-  }>({ source: rawMDX });
+  }>({
+    source: rawMDX,
+    components: {
+      Video,
+      CustomImage,
+    },
+    options: {
+      parseFrontmatter: true,
+      mdxOptions: {
+        rehypePlugins: [
+          rehypeHighlight,
+          rehypeSlug,
+          [
+            rehypeAutolinkHeadings,
+            {
+              behavior: "wrap",
+            },
+          ],
+        ],
+      },
+    },
+  });
 
   const id = fileName.replace(/\.mdx$/, "");
 

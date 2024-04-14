@@ -1,11 +1,41 @@
 {
     "info": {
-        "_postman_id": "d94607ec-c240-4422-adc9-f7f26d22d6d8",
-        "name": "Nextjs Chapter 10",
+        "_postman_id": "aad67cee-bef9-4b6f-bc54-56f152ef8f8a",
+        "name": "Nextjs Chapter 12",
         "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
         "description": ""
     },
     "item": [
+        {
+            "name": "Revalidate (On-Demand) Deployed",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "https://my-nextjs-blogs.vercel.app/api/revalidate?path=/&secret=6679a3f9d66fd5da7dd13b94d4ed3762",
+                    "query": [
+                        {
+                            "key": "path",
+                            "value": "/"
+                        },
+                        {
+                            "key": "secret",
+                            "value": "6679a3f9d66fd5da7dd13b94d4ed3762"
+                        }
+                    ],
+                    "variable": [],
+                    "path": [
+                        "api",
+                        "revalidate"
+                    ],
+                    "protocol": "https",
+                    "host": [
+                        "my-nextjs-blogs",
+                        "vercel",
+                        "app"
+                    ]
+                }
+            }
+        },
         {
             "name": "Revalidate (On-Demand)",
             "request": {

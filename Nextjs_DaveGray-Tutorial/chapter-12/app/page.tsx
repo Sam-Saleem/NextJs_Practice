@@ -4,7 +4,7 @@ import MyProfilePic from "./components/MyProfilePic";
 
 // After two requests(clicks/refresh) the new changes will be reflected because at first request it will  triggers the revalidate but when it is revalidating it will still show old data and then the second requests gets the new version
 
-// export const revalidate = 10; //86400(1 day) for deployement
+export const revalidate = 86400; //(1 day) for deployement
 
 export default function Home() {
   return (
