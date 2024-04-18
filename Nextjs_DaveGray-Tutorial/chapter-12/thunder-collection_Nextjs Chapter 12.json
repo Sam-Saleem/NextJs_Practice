@@ -1,0 +1,59 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Nextjs Chapter 12",
+    "dateExported": "2024-04-09T09:08:49.929Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "0920f241-8e91-41e6-b63b-5f6cbd90f6a5",
+            "colId": "9e303a48-936e-4aa6-b7a5-1483c6d7f8c3",
+            "containerId": "",
+            "name": "Revalidate (On-Demand) Deployed",
+            "url": "https://my-nextjs-blogs.vercel.app/api/revalidate?path=/&secret=6679a3f9d66fd5da7dd13b94d4ed3762",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-04-09T08:50:18.033Z",
+            "modified": "2024-04-09T09:05:13.918Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "path",
+                    "value": "/",
+                    "isPath": false
+                },
+                {
+                    "name": "secret",
+                    "value": "6679a3f9d66fd5da7dd13b94d4ed3762",
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "269cab71-aa45-4364-aae7-65cd46b639be",
+            "colId": "9e303a48-936e-4aa6-b7a5-1483c6d7f8c3",
+            "containerId": "",
+            "name": "Revalidate (On-Demand)",
+            "url": "http://localhost:3000/api/revalidate?path=/&secret=6679a3f9d66fd5da7dd13b94d4ed3762",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2024-04-09T09:08:15.116Z",
+            "modified": "2024-04-09T09:08:15.116Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "path",
+                    "value": "/",
+                    "isPath": false
+                },
+                {
+                    "name": "secret",
+                    "value": "6679a3f9d66fd5da7dd13b94d4ed3762",
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        }
+    ]
+}
